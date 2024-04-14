@@ -31,7 +31,7 @@ jobs:
 
       - name: Checkout PR
         if: github.event_name == 'issue_comment'
-        run: hub pr checkout ${{ github.event.issue.number }}
+        run: gh pr checkout ${{ github.event.issue.number }}
 
       - name: Read Flutter SDK version
         id: flutter_sdk_version
