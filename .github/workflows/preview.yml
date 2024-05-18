@@ -37,7 +37,7 @@ jobs:
 
       - name: Read Flutter SDK version
         id: flutter_sdk_version
-        run: echo "FLUTTER_SDK_VERSION=$(jq -r '.flutterSdkVersion' .fvm/fvm_config.json)" >> $GITHUB_OUTPUT
+        run: echo "FLUTTER_SDK_VERSION=$(jq -r '.flutter' .fvmrc)" >> $GITHUB_ENV
         shell: bash
 
       - name: Setup Flutter
@@ -45,6 +45,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ steps.flutter_sdk_version.outputs.version }}
+          cache: true
 
       - name: Build Web app
         run: flutter build web
